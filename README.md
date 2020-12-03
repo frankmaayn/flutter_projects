@@ -2,7 +2,7 @@
 
 ## Background
 ```
-This repository contains a variety of flutter projects I have created.
+This repository contains a variety of flutter projects that I have created.
 ```
 ## Projects
 ```
