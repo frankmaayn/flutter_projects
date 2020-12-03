@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 
 //Ctrl +q  -> parameters
 void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(MiCard());
 }
 
@@ -87,7 +89,6 @@ class MiCard extends StatelessWidget {
                   )
                   ),
                 ),
-
               Card(
                 margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                 color: Colors.white,
