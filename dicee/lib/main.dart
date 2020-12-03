@@ -25,11 +25,13 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 2;
+  int resultNumber = 3;
 
   void changeDice() {
     setState(() {
       leftDiceNumber = 1 + Random().nextInt(6);
       rightDiceNumber = 1 + Random().nextInt(6);
+      resultNumber = leftDiceNumber + rightDiceNumber;
     });
   }
 
@@ -44,7 +46,7 @@ class _DicePageState extends State<DicePage> {
             Text(
               'Dice Roller',
               style: GoogleFonts.blackOpsOne(
-                  color: Colors.lightBlueAccent[700],
+                  color: Colors.black,
                   fontSize: 60,
                   letterSpacing: 5,
                   height: 4.0),
@@ -65,8 +67,16 @@ class _DicePageState extends State<DicePage> {
                 ),
               ],
             ),
+            Text(
+              'Result is $resultNumber',
+              style: GoogleFonts.blackOpsOne(
+                  color: Colors.black,
+                  fontSize: 40,
+                  letterSpacing: 5,
+                  height: 4.0),
+            ),
             Padding(
-              padding: const EdgeInsets.all(100.0),
+              padding: const EdgeInsets.all(10.0),
               child: FloatingActionButton(
                 onPressed: changeDice,
                 child: Icon(Icons.whatshot_rounded),
