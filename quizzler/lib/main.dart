@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:quizzler/quiz_brain.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -10,7 +12,7 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.grey.shade900,
+        backgroundColor: Colors.black,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -28,29 +30,37 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> ScoreKeeper = [];
-
   void checkAnswer(bool checkUserAnswer) {
-    if (quizBrain.getQuestionState() == true) {
+    if (quizBrain.getQuestionState() == true &&
+        quizBrain.getQuizEndStatus() != true) {
       bool check = quizBrain.getQuestionAnswer();
 
       if (check == checkUserAnswer) {
-        ScoreKeeper.add(Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
+        quizBrain.addPoint();
       } else {
-        ScoreKeeper.add(Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
+        // do nothing
       }
       setState(() {
-        quizBrain.nextQuestion();
+        if (quizBrain.getQuestionNumber() < quizBrain.getQuestionLength() - 1) {
+          quizBrain.nextQuestion();
+        } else {
+          Alert(
+                  context: context,
+                  title: "Quiz is finished!",
+                  desc: "You scored: ${quizBrain.getScore() * 100}%")
+              .show();
+          quizBrain.quizEnd();
+        }
       });
     } else {
-      Alert(context: context, title: "RFLUTTER", desc: "Flutter is awesome.")
-          .show();
+      setState(() {
+        Alert(
+                context: context,
+                title: "Quiz has ended",
+                desc: "App will reset the score")
+            .show();
+        quizBrain.reset();
+      });
     }
   }
 
@@ -61,21 +71,39 @@ class _QuizPageState extends State<QuizPage> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Expanded(
-          flex: 5,
+          flex: 4,
+          child: CircularPercentIndicator(
+            progressColor: Colors.cyan,
+            backgroundColor: Colors.grey,
+            lineWidth: 20,
+            percent: quizBrain.getScore(),
+            radius: 220,
+            animation: true,
+            animateFromLastPercent: true,
+            center: Text(
+              'Score\n${quizBrain.getScore() * 100} %',
+              style: GoogleFonts.bungee(
+                fontSize: 30,
+                color: Colors.white,
+              ),
+            ),
+          ),
+        ),
+        //question section
+        Expanded(
+          flex: 3,
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
                 quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25.0,
-                  color: Colors.white,
-                ),
+                style: GoogleFonts.sansita(fontSize: 30, color: Colors.white),
               ),
             ),
           ),
         ),
+        //true section
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
@@ -95,11 +123,12 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
+        //false section
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(15.0),
             child: FlatButton(
-              color: Colors.red,
+              color: Colors.lightBlue,
               child: Text(
                 'False',
                 style: TextStyle(
@@ -113,16 +142,8 @@ class _QuizPageState extends State<QuizPage> {
             ),
           ),
         ),
-        Row(
-          children: ScoreKeeper,
-        ),
+        //result section
       ],
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/

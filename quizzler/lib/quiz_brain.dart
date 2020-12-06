@@ -2,6 +2,8 @@ import 'question.dart';
 
 class QuizBrain {
   int _questionNumber = 0;
+  int _scoreCheck = 0;
+  bool _quizEnd = false;
   List<Question> _questionBank = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
@@ -31,7 +33,7 @@ class QuizBrain {
   ];
 
   void nextQuestion() {
-    if (_questionNumber < _questionBank.length - 1) {
+    if (_questionNumber < _questionBank.length) {
       _questionNumber++;
     }
   }
@@ -53,10 +55,33 @@ class QuizBrain {
   }
 
   bool getQuestionState() {
-    if (_questionNumber < _questionBank.length - 1) {
+    if (_questionNumber < _questionBank.length) {
       return true;
     } else {
       return false;
     }
+  }
+
+  void addPoint() {
+    _scoreCheck++;
+  }
+
+  double getScore() {
+    return double.parse(
+        ((_scoreCheck / (_questionBank.length))).toStringAsFixed(2));
+  }
+
+  void reset() {
+    _questionNumber = 0;
+    _scoreCheck = 0;
+    _quizEnd = false;
+  }
+
+  void quizEnd() {
+    _quizEnd = true;
+  }
+
+  bool getQuizEndStatus() {
+    return _quizEnd;
   }
 }
