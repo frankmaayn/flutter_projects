@@ -16,4 +16,5 @@ This repository contains a variety of flutter projects that I have created.
 4. Magic 8 Ball - this project is a yes or no app.
 5. Dicee - this project is dice roller, you press a button get a random number from 2 dice.
 6. Xylophone - Xylophone app that plays audio.
+7. Quizzler - this project is a quiz app.
 ```
