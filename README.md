@@ -6,7 +6,7 @@ Created 12-2-2020
 
 ## Background
 ```
-This repository contains a variety of flutter projects that I have created.
+This repository contains a variety of flutter projects that I have created throughout the Flutter course
 ```
 ## Projects
 ```
