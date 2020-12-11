@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-const apiKey = 'ea340f3514b60cdf47d4c7d5a28d298f';
+const apiKey = '[INSERT YOUR API KEY HERE]';
 
 class NetworkHelper {
   final String url;
