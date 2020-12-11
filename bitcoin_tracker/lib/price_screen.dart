@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'coin_data.dart';
 
@@ -14,7 +12,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
-  var rate;
+  int rate = 0;
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -30,7 +28,10 @@ class _PriceScreenState extends State<PriceScreen> {
       value: selectedCurrency,
       items: dropdownItems,
       onChanged: (value) {
+        CoinData coinData = CoinData(currency: value);
+        coinData.getCoinData();
         setState(() {
+          rate = coinData.getCurrencyRate();
           selectedCurrency = value;
         });
       },
@@ -53,25 +54,10 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  void getCoinData() async {
-    http.Response response =
-        await http.get('$coinAPIURL/BTC/USD?apikey=$apiKey');
-
-    if (response.statusCode == 200) {
-      String data = response.body;
-      var decodedData = jsonDecode(data);
-      double rateTemp = decodedData['rate'];
-      setState(() {
-        rate = rateTemp.toInt();
-      });
-    }
-  }
-
   @override
   void initState() {
     super.initState();
     //TODO: Call getData() when the screen loads up.
-    getCoinData();
   }
 
   @override
@@ -96,7 +82,7 @@ class _PriceScreenState extends State<PriceScreen> {
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
                   //TODO: Update the Text Widget with the live bitcoin data here.
-                  '1 BTC = $rate USD',
+                  '1 BTC = $rate $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
