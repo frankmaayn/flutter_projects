@@ -51,7 +51,6 @@
 **/ios/**/Pods/
 **/ios/**/.symlinks/
 **/ios/**/profile
-**/ios/Flutter/flutter_export_environment.sh
 **/ios/**/xcuserdata
 **/ios/.generated/
 **/ios/Flutter/App.framework
