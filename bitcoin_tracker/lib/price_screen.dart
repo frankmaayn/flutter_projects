@@ -11,8 +11,8 @@ class PriceScreen extends StatefulWidget {
 }
 
 class _PriceScreenState extends State<PriceScreen> {
-  String selectedCurrency = 'USD';
-  int rate = 0;
+  //TODO 6: Update the default currency to AUD, the first item in the currencyList.
+  String selectedCurrency = 'AUD';
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -28,11 +28,10 @@ class _PriceScreenState extends State<PriceScreen> {
       value: selectedCurrency,
       items: dropdownItems,
       onChanged: (value) {
-        CoinData coinData = CoinData(currency: value);
-        coinData.getCoinData();
         setState(() {
-          rate = coinData.getCurrencyRate();
+          //TODO 2: Call getData() when the picker/dropdown changes.
           selectedCurrency = value;
+          getData();
         });
       },
     );
@@ -49,15 +48,32 @@ class _PriceScreenState extends State<PriceScreen> {
       itemExtent: 32.0,
       onSelectedItemChanged: (selectedIndex) {
         print(selectedIndex);
+        //TODO 1: Save the selected currency to the property selectedCurrency
+        selectedCurrency = selectedIndex.toString();
+        //TODO 2: Call getData() when the picker/dropdown changes.
+        getData();
       },
       children: pickerItems,
     );
   }
 
+  String bitcoinValue = '?';
+
+  void getData() async {
+    try {
+      double data = await CoinData().getCoinData(selectedCurrency);
+      setState(() {
+        bitcoinValue = data.toStringAsFixed(0);
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    //TODO: Call getData() when the screen loads up.
+    getData();
   }
 
   @override
@@ -81,8 +97,8 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  //TODO: Update the Text Widget with the live bitcoin data here.
-                  '1 BTC = $rate $selectedCurrency',
+                  //TODO 5: Update the currency name depending on the selectedCurrency.
+                  '1 BTC = $bitcoinValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
