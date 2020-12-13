@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'coin_data.dart';
+import 'crypto_card.dart';
 
 class PriceScreen extends StatefulWidget {
   @override
@@ -12,6 +13,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'AUD';
+  Map data;
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -54,16 +56,17 @@ class _PriceScreenState extends State<PriceScreen> {
     );
   }
 
-  String value = '?';
+  String valueBTC = '?';
+  String valueETH = '?';
+  String valueLTC = '?';
 
-  //TODO 7: Figure out a way of displaying a '?' on screen while we're waiting for the price data to come back. Hint: You'll need a ternary operator.
-
-  //TODO 6: Update this method to receive a Map containing the crypto:price key value pairs. Then use that map to update the CryptoCards.
   void getData() async {
     try {
-      double data = await CoinData().getCoinData(selectedCurrency);
+      data = await CoinData().getCoinData(selectedCurrency);
       setState(() {
-        value = data.toStringAsFixed(0);
+        valueBTC = data[cryptoList[0]].toString();
+        valueETH = data[cryptoList[1]].toString();
+        valueLTC = data[cryptoList[2]].toString();
       });
     } catch (e) {
       print(e);
@@ -73,10 +76,9 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   void initState() {
     super.initState();
+
     getData();
   }
-
-  //TODO: For bonus points, create a method that loops through the cryptoList and generates a CryptoCard for each.
 
   @override
   Widget build(BuildContext context) {
@@ -88,26 +90,21 @@ class _PriceScreenState extends State<PriceScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          //TODO 2: You'll need to able to pass the selectedCurrency, value and cryptoCurrency to the constructor of this CryptoCard Widget.
-          //TODO 3: You'll need to use a Column Widget to contain the three CryptoCards.
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               CryptoCard(
-                value: value,
-                selectedCurrency: selectedCurrency,
-                cryptoCurrency: cryptoList[0],
-              ),
+                  value: valueBTC,
+                  selectedCurrency: selectedCurrency,
+                  cryptoCurrency: cryptoList[0]),
               CryptoCard(
-                value: value,
-                selectedCurrency: selectedCurrency,
-                cryptoCurrency: cryptoList[1],
-              ),
+                  value: valueETH,
+                  selectedCurrency: selectedCurrency,
+                  cryptoCurrency: cryptoList[1]),
               CryptoCard(
-                value: value,
-                selectedCurrency: selectedCurrency,
-                cryptoCurrency: cryptoList[2],
-              ),
+                  value: valueLTC,
+                  selectedCurrency: selectedCurrency,
+                  cryptoCurrency: cryptoList[2])
             ],
           ),
           Container(
@@ -118,39 +115,6 @@ class _PriceScreenState extends State<PriceScreen> {
             child: Platform.isIOS ? iOSPicker() : androidDropdown(),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CryptoCard extends StatelessWidget {
-  final String value;
-  final String selectedCurrency;
-  final String cryptoCurrency;
-
-  CryptoCard({this.value, this.selectedCurrency, this.cryptoCurrency});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
-      child: Card(
-        color: Colors.lightBlueAccent,
-        elevation: 5.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
-          child: Text(
-            '1 $cryptoCurrency = $value $selectedCurrency',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20.0,
-              color: Colors.white,
-            ),
-          ),
-        ),
       ),
     );
   }
