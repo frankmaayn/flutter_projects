@@ -47,7 +47,7 @@ class _DicePageState extends State<DicePage> {
               'Dice Roller',
               style: GoogleFonts.blackOpsOne(
                   color: Colors.black,
-                  fontSize: 60,
+                  fontSize: 45,
                   letterSpacing: 5,
                   height: 4.0),
             ),

@@ -46,7 +46,7 @@ class _BallState extends State<Ball> {
                 "Magic 8 Ball",
                 style: GoogleFonts.bowlbyOneSc(
                   color: Colors.blueAccent,
-                  fontSize: 55,
+                  fontSize: 45,
                   letterSpacing: 2,
                 ),
               ),
