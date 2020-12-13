@@ -1,3 +1,3 @@
 # Project Image
 
-![](project_images/bmi_calculator.png)
+![](https://github.com/frankmaayn/flutter_projects/blob/main/project_images/bmi_calculator.png)
