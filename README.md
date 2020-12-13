@@ -20,5 +20,6 @@ This repository contains a variety of flutter projects that I have created throu
 8.  Destini - this project goes through a storyline. Each choice will lead to a different path.
 9.  Clima - this project shows the weather of your current location.
 10. BMI Calculator - this project calcualtes your BMI.
-11. Bitcoin Tracker - in progress
+11. Bitcoin Tracker - this project shows the rate of 1 bitcoin to a variety of currencies.
+12. Flash Chat - in progress
 ```
