@@ -1,3 +1,3 @@
 # Project Images
 
-![](https://github.com/frankmaayn/flutter_projects/blob/main/project_images/bitcoin_tracker.png)
+<img src="https://github.com/frankmaayn/flutter_projects/blob/main/project_images/bitcoin_tracker.png" width="350" height="650">
