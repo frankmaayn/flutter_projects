@@ -73,8 +73,8 @@ class _ChatScreenState extends State<ChatScreen> {
                     onPressed: () {
                       //Implement send functionality.
                       _firestore.collection('messages2').add({
-                        'sender': messageText,
-                        'text': loggedInUser.email,
+                        'sender': loggedInUser.email,
+                        'text': messageText,
                       }).catchError(() {
                         print("DID NOT GET SENT");
                       });
