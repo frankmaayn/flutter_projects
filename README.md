@@ -21,5 +21,5 @@ This repository contains a variety of flutter projects that I have created throu
 9.  Clima - this project shows the weather of your current location.
 10. BMI Calculator - this project calcualtes your BMI.
 11. Bitcoin Tracker - this project shows the rate of 1 bitcoin to a variety of currencies.
-12. Flash Chat - in progress
+12. Flash Chat - Chat app that requires user to ergister in order to communicate with other users
 ```
