@@ -33,11 +33,14 @@ class _TasksScreenState extends State<TasksScreen> {
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskScreen(
                   addTaskCallback: (newTaskTitle) {
-                    setState(() {
-                      tasks.add(
-                        Task(name: newTaskTitle),
-                      );
-                    });
+                    setState(
+                      () {
+                        tasks.add(
+                          Task(name: newTaskTitle),
+                        );
+                      },
+                    );
+                    Navigator.pop(context);
                   },
                 ),
               ),
