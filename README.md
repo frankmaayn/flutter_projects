@@ -15,12 +15,12 @@ This repository contains a variety of flutter projects that I have created throu
 3.  Mi Card - this project shows a short profile of me.
 4.  Magic 8 Ball - this project is a yes or no app.
 5.  Dicee - this project is dice roller, you press a button get a random number from 2 dice.
-6.  Xylophone - xylophone app that plays audio.
+6.  Xylophone - this is a xylophone app that plays audio.
 7.  Quizzler - this project is a quiz app.
 8.  Destini - this project goes through a storyline. Each choice will lead to a different path.
 9.  Clima - this project shows the weather of your current location.
 10. BMI Calculator - this project calcualtes your BMI.
 11. Bitcoin Tracker - this project shows the rate of 1 bitcoin to a variety of currencies.
-12. Flash Chat - Chat app that requires user to ergister in order to communicate with other users
-13. To do - in progress
+12. Flash Chat - this is a chat app that requires user to ergister in order to communicate with other users
+13. To do - this project allows you to create a to do list
 ```
