@@ -20,7 +20,7 @@ class _TasksListState extends State<TasksList> {
           isChecked: widget.tasks[index].isDone,
           checkboxCallback: (bool checkBoxState) {
             setState(() {
-              widget.tasks[index].toggleDone();
+              widget.tasks[index].isDone = checkBoxState;
             });
           },
         );
