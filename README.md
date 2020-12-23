@@ -18,9 +18,11 @@ This repository contains a variety of flutter projects that I have created throu
 6.  Xylophone - this is a xylophone app that plays audio.
 7.  Quizzler - this project is a quiz app.
 8.  Destini - this project goes through a storyline. Each choice will lead to a different path.
-9.  Clima - this project shows the weather of your current location.
+9.  Clima - this project shows the weather of your current location.*
 10. BMI Calculator - this project calcualtes your BMI.
-11. Bitcoin Tracker - this project shows the rate of 1 bitcoin to a variety of currencies.
+11. Bitcoin Tracker - this project shows the rate of 1 bitcoin to a variety of currencies.*
 12. Flash Chat - this is a chat app that requires user to ergister in order to communicate with other users
 13. To do - this project allows you to create a to do list
 ```
+
+\* These apps require users to enter their own personal API key
