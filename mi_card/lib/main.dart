@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
-
+import 'package:google_fonts/google_fonts.dart';
 //Ctrl +q  -> parameters
+
 void main() {
-  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(MiCard());
 }
 
@@ -37,10 +39,7 @@ class MiCard extends StatelessWidget {
               Text(
                 'Computer Scientist',
                 style: GoogleFonts.teko(
-                  color: Colors.white,
-                  fontSize: 40,
-                  letterSpacing: 5
-                ),
+                    color: Colors.white, fontSize: 40, letterSpacing: 5),
               ),
               SizedBox(
                 height: 20,
@@ -55,40 +54,36 @@ class MiCard extends StatelessWidget {
                 child: Padding(
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     child: ListTile(
-                      leading:Icon(
+                      leading: Icon(
                         Icons.account_circle_rounded,
                         color: Colors.black,
-                      ) ,
+                      ),
                       title: Text(
                         'Frank Serdenia',
                         style: GoogleFonts.hind(
                           fontSize: 16,
                         ),
                       ),
-
-                    )
-                ),
+                    )),
               ),
               Card(
                 margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                 color: Colors.white,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                  child: ListTile(
-                    leading:Icon(
-                      Icons.phone,
-                      color: Colors.black,
-                    ) ,
-                    title: Text(
-                      '+1(985) 567-8925',
-                      style: GoogleFonts.hind(
-                        fontSize: 16,
+                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.phone,
+                        color: Colors.black,
                       ),
-                    ),
-
-                  )
-                  ),
-                ),
+                      title: Text(
+                        '+1(985) 567-8925',
+                        style: GoogleFonts.hind(
+                          fontSize: 16,
+                        ),
+                      ),
+                    )),
+              ),
               Card(
                 margin: EdgeInsets.symmetric(horizontal: 18, vertical: 7),
                 color: Colors.white,
@@ -99,7 +94,7 @@ class MiCard extends StatelessWidget {
                       Icons.email,
                       color: Colors.black,
                     ),
-                    title:Text(
+                    title: Text(
                       'frankjoseph.serdenia.530@my.csun.edu',
                       style: GoogleFonts.hind(
                         fontSize: 16,
@@ -118,7 +113,7 @@ class MiCard extends StatelessWidget {
                       Icons.assignment_ind,
                       color: Colors.black,
                     ),
-                    title:Text(
+                    title: Text(
                       'LinkedIn: frankjosephserdenia',
                       style: GoogleFonts.hind(
                         fontSize: 16,

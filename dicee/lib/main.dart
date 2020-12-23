@@ -1,12 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 //Expanded widget -> allows the child to adapt on the size of the parent widget
 //Stateless widget -> if the structure of the context does not change, this is preferred
 //Stateful widget -> if the structure of the context does change, this is preferred
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
     MaterialApp(
       home: Scaffold(
